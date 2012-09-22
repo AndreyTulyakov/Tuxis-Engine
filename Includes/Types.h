@@ -23,7 +23,9 @@ namespace Tuxis
 		float x,y;
 		inline float2() : x(0), y(0) {}
 		inline float2(float px,float py) : x(px), y(py) {}
+		inline float2(const float2& p) : x(p.x), y(p.y) {}
 		inline void operator() (float px, float py) { x=px; y=py;}
+		inline void operator() (const float2& p) { x=p.x; y=p.y;}
 
 		void operator -= (const float2& pValue)
 		{
@@ -80,10 +82,31 @@ namespace Tuxis
 
 	struct floatRect
 	{
-		float x1,y1;
-		float x2,y2;
+		float x1,y1,x2,y2;
+
 		inline floatRect() : x1(0), y1(0), x2(0), y2(0) {}
-		inline floatRect(float X1,float Y1, float X2, float Y2) : x1(X1), y1(Y1), x2(X2), y2(Y2) {}
+
+		inline floatRect(float px1, float py1, float px2, float py2) 
+			: x1(px1), y1(py1), x2(px2), y2(py2) {}
+
+		inline floatRect(float2 pLeftTop, float2 pRightBottom) 
+			: x1(pLeftTop.x), y1(pLeftTop.y), x2(pRightBottom.x), y2(pRightBottom.y) {}
+	
+		void operator() (float px1, float py1, float px2, float py2)
+		{
+			x1=px1;
+			y1=py1;
+			x2=px2;
+			y2=py2;
+		}
+
+		void operator() (float2 pLeftTop, float2 pRightBottom)
+		{
+			x1=pLeftTop.x;
+			y1=pLeftTop.y;
+			x2=pRightBottom.x;
+			y2=pRightBottom.y;
+		}
 	};
 
 
@@ -140,14 +163,6 @@ namespace Tuxis
 		inline int4() : x(0), y(0), z(0), w(0) {}
 		inline int4(int px,int py, int pz, int pw) : x(px), y(py), z(pz), w(pw) {}
 		inline void operator() (int px, int py, int pz, int pw) { x=px; y=py; z=pz; w=pw;}
-	};
-
-	struct intRect
-	{
-		int x1,y1;
-		int x2,y2;
-		inline intRect() : x1(0), y1(0), x2(0), y2(0) {}
-		inline intRect(int X1,int Y1, int X2, int Y2) : x1(X1), y1(Y1), x2(X2), y2(Y2) {}
 	};
 
 }

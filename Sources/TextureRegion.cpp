@@ -11,7 +11,7 @@ namespace Tuxis
 	TextureRegion::TextureRegion(TextureAtlas *pTextureAtlas,float x1,float y1,float x2,float y2)
 	{
 		mTexture=pTextureAtlas;
-		SetRegion(x1,y1,x2,y2);
+		Region(x1,y1,x2,y2);
 	
 		if(!pTextureAtlas)
 			Log::Warning("TxTextureRegion::TxTextureRegion: Texture Atlas - null");
@@ -20,10 +20,7 @@ namespace Tuxis
 	
 	void TextureRegion::SetRegion(float x1,float y1,float x2,float y2)
 	{
-		Region.x1=x1;
-		Region.y1=y1;
-		Region.x2=x2;
-		Region.y2=y2;
+		Region(x1,y1,x2,y2);
 	}
 	
 	void TextureRegion::SetTextureAtlas(TextureAtlas *pTextureAtlas)

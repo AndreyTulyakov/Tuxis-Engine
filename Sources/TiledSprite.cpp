@@ -14,10 +14,7 @@ namespace Tuxis
 		mLastTime=0;
 		mTiledTextureRegion=0;
 
-		AbsTextureCoordinate.x1 = 0.0f;
-		AbsTextureCoordinate.x2 = 1.0f;
-		AbsTextureCoordinate.y1 = 0.0f;
-		AbsTextureCoordinate.y2 = 1.0f;
+		AbsTextureCoordinate(0.0f,0.0f,1.0f,1.0f);
 
 		VB_Stride = sizeof( vertices[0] );
 		VB_Offset = 0;

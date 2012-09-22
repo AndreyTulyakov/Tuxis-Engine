@@ -19,10 +19,7 @@ namespace Tuxis
 		HTW=0;
 		HTH=0;
 	
-		AbsTextureCoordinate.x1 = 0.0f;
-		AbsTextureCoordinate.x2 = 1.0f;
-		AbsTextureCoordinate.y1 = 0.0f;
-		AbsTextureCoordinate.y2 = 1.0f;
+		AbsTextureCoordinate(0.0f,0.0f,1.0f,1.0f);
 	
 		VB_Stride = sizeof( Tuxis::Vertex::SpriteGroupVertex );
 		VB_Offset = 0;
@@ -140,14 +137,16 @@ namespace Tuxis
 				}
 	
 				floatRect *Region=mTiledTextureRegion->TileCoordinates.at(SpriteBase[i/6].Frame);
+
+				HTW=( (Region->x2 - Region->x1) )/2.0f;
+				HTH=( (Region->y2 - Region->y1) )/2.0f;
 	
-				HTW=( (Region->x2-Region->x1) )/2.0f;
-				HTH=( (Region->y2-Region->y1) )/2.0f;
-	
-				AbsTextureCoordinate.x1 = Region->x1 / (int)mTiledTextureRegion->mTexture->GetWidth();
-				AbsTextureCoordinate.x2 = Region->x2 / (int)mTiledTextureRegion->mTexture->GetWidth();
-				AbsTextureCoordinate.y1 = Region->y1 / (int)mTiledTextureRegion->mTexture->GetHeight();
-				AbsTextureCoordinate.y2 = Region->y2 / (int)mTiledTextureRegion->mTexture->GetHeight();
+				AbsTextureCoordinate(
+					Region->x1 / (int)mTiledTextureRegion->mTexture->GetWidth(),
+					Region->y1 / (int)mTiledTextureRegion->mTexture->GetHeight(),
+					Region->x2 / (int)mTiledTextureRegion->mTexture->GetWidth(),
+					Region->y2 / (int)mTiledTextureRegion->mTexture->GetHeight()
+					);
 	
 				float xPos=SpriteBase[i/6].Position.x;
 				float yPos=SpriteBase[i/6].Position.y;
@@ -162,13 +161,19 @@ namespace Tuxis
 				pTempVertex[BufferCounter + 5].Position = XMFLOAT3( -HTW,  -HTH, 0.0f );
 	
 				// Texture Position.
-				pTempVertex[BufferCounter + 0].TexCoord = XMFLOAT2( AbsTextureCoordinate.x1, AbsTextureCoordinate.y1 );
-				pTempVertex[BufferCounter + 1].TexCoord = XMFLOAT2( AbsTextureCoordinate.x2, AbsTextureCoordinate.y2 );
-				pTempVertex[BufferCounter + 2].TexCoord = XMFLOAT2( AbsTextureCoordinate.x1, AbsTextureCoordinate.y2 );
+				pTempVertex[BufferCounter + 0].TexCoord 
+					= XMFLOAT2( AbsTextureCoordinate.x1, AbsTextureCoordinate.y1 );
+				pTempVertex[BufferCounter + 1].TexCoord 
+					= XMFLOAT2( AbsTextureCoordinate.y2, AbsTextureCoordinate.y2 );
+				pTempVertex[BufferCounter + 2].TexCoord 
+					= XMFLOAT2( AbsTextureCoordinate.x1, AbsTextureCoordinate.y2 );
 	
-				pTempVertex[BufferCounter + 3].TexCoord = XMFLOAT2( AbsTextureCoordinate.x2, AbsTextureCoordinate.y1 );
-				pTempVertex[BufferCounter + 4].TexCoord = XMFLOAT2( AbsTextureCoordinate.x2, AbsTextureCoordinate.y2 );
-				pTempVertex[BufferCounter + 5].TexCoord = XMFLOAT2( AbsTextureCoordinate.x1, AbsTextureCoordinate.y1 );
+				pTempVertex[BufferCounter + 3].TexCoord 
+					= XMFLOAT2( AbsTextureCoordinate.x2, AbsTextureCoordinate.y1 );
+				pTempVertex[BufferCounter + 4].TexCoord 
+					= XMFLOAT2( AbsTextureCoordinate.x2, AbsTextureCoordinate.y2 );
+				pTempVertex[BufferCounter + 5].TexCoord 
+					= XMFLOAT2( AbsTextureCoordinate.x1, AbsTextureCoordinate.y1 );
 	
 	
 				XMFLOAT4 CurrentColor=SpriteBase[i/6].Color;
