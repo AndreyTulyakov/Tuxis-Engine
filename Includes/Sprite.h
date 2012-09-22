@@ -29,7 +29,7 @@ namespace Tuxis
 		Vertex::vtxSprite vertices[4];
 
 		floatRect AbsTexCoord;
-		float HTW,HTH;
+		float2 HalfTexSize;
 		CBSprite mCBValue;
 
 		void Initialize();

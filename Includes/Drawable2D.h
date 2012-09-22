@@ -2,8 +2,7 @@
 ===============================================================================
 Project Tuxis. 2011-2012.
 ===============================================================================
-Drawable interface
-Required:
+Drawable superclass
 ===============================================================================
 */
 
@@ -16,6 +15,7 @@ Required:
 #include "EngineBase.h"
 #include "Shader.h"
 #include "SceneObject.h"
+
 
 namespace Tuxis
 {

@@ -152,7 +152,7 @@ namespace Tuxis
 	
 	
 	
-		Engine::GetGraphics()->EnableStencilBuffer();
+		Graphics::Instance()->EnableStencilBuffer();
 	
 		// Context configuration
 		

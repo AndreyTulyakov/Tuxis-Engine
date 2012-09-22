@@ -42,8 +42,7 @@ namespace Tuxis
 	
 		floatRect AbsTextureCoordinate;
 		Tuxis::Vertex::SpriteGroupVertex *vertices;	
-		// Half sprite size
-		float HTW,HTH;
+		float2 HalfTexSize;
 		BasicSprite *SpriteBase;
 	
 	

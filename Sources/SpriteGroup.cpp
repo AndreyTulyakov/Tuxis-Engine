@@ -13,10 +13,8 @@ namespace Tuxis
 	
 		mTextureRegion=0;
 	
-		AbsTexCoord.x1 = 0.0f;
-		AbsTexCoord.x2 = 1.0f;
-		AbsTexCoord.y1 = 0.0f;
-		AbsTexCoord.y2 = 1.0f;
+		AbsTexCoord(0.0f,0.0f,1.0f,1.0f);
+		HalfTexSize(0,0);
 	
 		VB_Stride = sizeof( Tuxis::Vertex::SpriteGroupVertex );
 		VB_Offset = 0;
@@ -70,9 +68,9 @@ namespace Tuxis
 		{
 			mTextureRegion=pTextureRegion;
 	
-			HTW=( (mTextureRegion->Region.x2-mTextureRegion->Region.x1) )/2.0f;
-			HTH=( (mTextureRegion->Region.y2-mTextureRegion->Region.y1) )/2.0f;
-	
+			HalfTexSize.x=( (mTextureRegion->Region.x2-mTextureRegion->Region.x1) )/2.0f;
+			HalfTexSize.y=( (mTextureRegion->Region.y2-mTextureRegion->Region.y1) )/2.0f;
+
 			AbsTexCoord.x1 = mTextureRegion->Region.x1 / mTextureRegion->mTexture->GetWidth();
 			AbsTexCoord.x2 = mTextureRegion->Region.x2 / mTextureRegion->mTexture->GetWidth();
 			AbsTexCoord.y1 = mTextureRegion->Region.y1 / mTextureRegion->mTexture->GetHeight();
@@ -92,7 +90,7 @@ namespace Tuxis
 		if(!mTextureRegion)
 			Log::Error("Sprite::Draw - Not set Texture Region.");
 	
-		Engine::GetInstance()->GetGraphics()->DisableStencilBuffer();
+		Graphics::Instance()->DisableStencilBuffer();
 	
 		int RealDrawCount=SpriteCount;
 	
@@ -129,14 +127,14 @@ namespace Tuxis
 					// Vertex Position.
 	
 					// First triangle
-					pTempVertex[BufferCounter + 0].Position = XMFLOAT3( -HTW,  -HTH, 0.0f );
-					pTempVertex[BufferCounter + 1].Position = XMFLOAT3(  HTW,   HTH, 0.0f );
-					pTempVertex[BufferCounter + 2].Position = XMFLOAT3( -HTW,   HTH, 0.0f );
+					pTempVertex[BufferCounter + 0].Position = XMFLOAT3( -HalfTexSize.x,  -HalfTexSize.y, 0.0f );
+					pTempVertex[BufferCounter + 1].Position = XMFLOAT3(  HalfTexSize.x,   HalfTexSize.y, 0.0f );
+					pTempVertex[BufferCounter + 2].Position = XMFLOAT3( -HalfTexSize.x,   HalfTexSize.y, 0.0f );
 	
 					// Second triangle
-					pTempVertex[BufferCounter + 3].Position = XMFLOAT3(  HTW,  -HTH, 0.0f );
-					pTempVertex[BufferCounter + 4].Position = XMFLOAT3(  HTW,   HTH, 0.0f );
-					pTempVertex[BufferCounter + 5].Position = XMFLOAT3( -HTW,  -HTH, 0.0f );
+					pTempVertex[BufferCounter + 3].Position = XMFLOAT3(  HalfTexSize.x,  -HalfTexSize.y, 0.0f );
+					pTempVertex[BufferCounter + 4].Position = XMFLOAT3(  HalfTexSize.x,   HalfTexSize.y, 0.0f );
+					pTempVertex[BufferCounter + 5].Position = XMFLOAT3( -HalfTexSize.x,  -HalfTexSize.y, 0.0f );
 	
 	
 					// Center pos
@@ -150,8 +148,7 @@ namespace Tuxis
 					pTempVertex[BufferCounter + 4].Rotation = XMFLOAT3( xPos,  yPos, rotation );
 					pTempVertex[BufferCounter + 5].Rotation = XMFLOAT3( xPos,  yPos, rotation );
 	
-	
-	
+
 					// Texture Position.
 	
 					// First triangle
@@ -164,13 +161,15 @@ namespace Tuxis
 					pTempVertex[BufferCounter + 4].TexCoord = XMFLOAT2( AbsTexCoord.x2, AbsTexCoord.y2 );
 					pTempVertex[BufferCounter + 5].TexCoord = XMFLOAT2( AbsTexCoord.x1, AbsTexCoord.y1 );
 	
+					// Set color modulation
 					pTempVertex[BufferCounter + 0].Color = color;
 					pTempVertex[BufferCounter + 1].Color = color;
 					pTempVertex[BufferCounter + 2].Color = color;
 					pTempVertex[BufferCounter + 3].Color = color;
 					pTempVertex[BufferCounter + 4].Color = color;
 					pTempVertex[BufferCounter + 5].Color = color;
-	
+
+					// Set scale
 					pTempVertex[BufferCounter + 0].Scale = scale;
 					pTempVertex[BufferCounter + 1].Scale = scale;
 					pTempVertex[BufferCounter + 2].Scale = scale;
@@ -215,7 +214,7 @@ namespace Tuxis
 		if(centered)
 			TranslationMatrix = XMMatrixTranslation( pX, pY, 0.0f );		
 		else
-			TranslationMatrix = XMMatrixTranslation( pX+HTW, pY+HTH, 0.0f );
+			TranslationMatrix = XMMatrixTranslation( pX+HalfTexSize.x, pY+HalfTexSize.y, 0.0f );
 	}
 	
 	void SpriteGroup::Clear()

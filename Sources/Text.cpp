@@ -372,7 +372,8 @@ namespace Tuxis
 		Engine::GetContext()->PSSetSamplers( 0, 1, mFont->GetTextureAtlas()->GetSamplerState() );
 		Engine::GetContext()->IASetInputLayout( mShader->InputLayout );
 		Engine::GetContext()->IASetPrimitiveTopology( D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST );
-		Engine::GetGraphics()->DisableStencilBuffer();
+
+		Graphics::Instance()->DisableStencilBuffer();
 		Engine::GetContext()->Draw( prVertexCount, 0 );
 	}
 

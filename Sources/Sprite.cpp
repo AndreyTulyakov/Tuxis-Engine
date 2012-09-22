@@ -9,11 +9,9 @@ namespace Tuxis
 		mChanged=true;
 		InitDrawable();
 	
-		AbsTexCoord.x1 = 0.0f;
-		AbsTexCoord.x2 = 1.0f;
-		AbsTexCoord.y1 = 0.0f;
-		AbsTexCoord.y2 = 1.0f;
-	
+		AbsTexCoord(0.0f,0.0f,1.0f,1.0f);
+		HalfTexSize(0,0);
+
 		VB_Stride = sizeof(vertices[0]);
 		VB_Offset = 0;
 
@@ -57,8 +55,8 @@ namespace Tuxis
 		mChanged=true;
 		mTexture=pTextureRegion->mTexture;
 	
-		HTW=( (pTextureRegion->Region.x2-pTextureRegion->Region.x1) )/2.0f;
-		HTH=( (pTextureRegion->Region.y2-pTextureRegion->Region.y1) )/2.0f;
+		HalfTexSize.x=( (pTextureRegion->Region.x2-pTextureRegion->Region.x1) )/2.0f;
+		HalfTexSize.y=( (pTextureRegion->Region.y2-pTextureRegion->Region.y1) )/2.0f;
 		
 		AbsTexCoord.x1 = pTextureRegion->Region.x1 / pTextureRegion->mTexture->GetWidth();
 		AbsTexCoord.x2 = pTextureRegion->Region.x2 / pTextureRegion->mTexture->GetWidth();
@@ -71,8 +69,8 @@ namespace Tuxis
 		mChanged=true;
 		mTexture=pTexture;
 	
-		HTW=pTexture->GetWidth() / 2.0f;
-		HTH=pTexture->GetHeight() / 2.0f;
+		HalfTexSize.x=pTexture->GetWidth() / 2.0f;
+		HalfTexSize.y=pTexture->GetHeight() / 2.0f;
 	
 		AbsTexCoord.x1 = 0.0f;
 		AbsTexCoord.x2 = 1.0f;
@@ -87,7 +85,7 @@ namespace Tuxis
 		if(centered)
 			TranslationMatrix = XMMatrixTranslation( pX, pY, 0.0f );		
 		else
-			TranslationMatrix = XMMatrixTranslation( pX+HTW, pY+HTH, 0.0f );
+			TranslationMatrix = XMMatrixTranslation( pX+HalfTexSize.x, pY+HalfTexSize.y, 0.0f );
 	}
 	
 	void Sprite::Draw()
@@ -106,7 +104,7 @@ namespace Tuxis
 			Update();
 		}
 		
-		Engine::GetGraphics()->DisableStencilBuffer();
+		Graphics::Instance()->DisableStencilBuffer();
 	
 		// Context configuration
 		Engine::GetContext()->IASetVertexBuffers( 0, 1, &VertexBuffer, &VB_Stride, &VB_Offset );
@@ -136,10 +134,10 @@ namespace Tuxis
 			{
 				Vertex::vtxSprite* pTempVertex=(Vertex::vtxSprite*)mapResource.pData;
 	
-				pTempVertex[0].Position = XMFLOAT3(-HTW,   HTH,  0.0f);
-				pTempVertex[1].Position = XMFLOAT3(-HTW,  -HTH,  0.0f);
-				pTempVertex[2].Position = XMFLOAT3( HTW,   HTH,  0.0f);
-				pTempVertex[3].Position = XMFLOAT3( HTW,  -HTH,  0.0f);
+				pTempVertex[0].Position = XMFLOAT3(-HalfTexSize.x,   HalfTexSize.y,  0.0f);
+				pTempVertex[1].Position = XMFLOAT3(-HalfTexSize.x,  -HalfTexSize.y,  0.0f);
+				pTempVertex[2].Position = XMFLOAT3( HalfTexSize.x,   HalfTexSize.y,  0.0f);
+				pTempVertex[3].Position = XMFLOAT3( HalfTexSize.x,  -HalfTexSize.y,  0.0f);
 	
 				pTempVertex[0].TexCoord = XMFLOAT2( AbsTexCoord.x1, AbsTexCoord.y2 );
 				pTempVertex[1].TexCoord = XMFLOAT2( AbsTexCoord.x1, AbsTexCoord.y1 );

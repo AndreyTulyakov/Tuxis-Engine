@@ -52,7 +52,6 @@ namespace Tuxis
 
 		void Release();
 		
-
 		HWND GetHWND();
 		int GetWidth();
 		int GetHeight();

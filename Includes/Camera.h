@@ -12,10 +12,11 @@ Required: <d3d11.h> <xnamath.h>
 
 #include "Log.h"
 
-#include <d3d11.h>
 #define _XM_NO_INTRINSICS_
+#include <d3d11.h>
 #pragma warning(disable:4251)
 #include <xnamath.h>
+
 
 namespace Tuxis
 {
@@ -52,24 +53,22 @@ namespace Tuxis
 		void Turn(float pRoll, float pPitch, float pYaw);
 		void Move(float pX, float pY, float pZ);
 
+		void SetPosition(float pX, float pY, float pZ);
+		void SetRotation(float pRoll, float pPitch, float pYaw);
+
+		void UpdateViewMatrix();
+		void Update();
+
 		float GetRoll();
 		float GetPitch();
 		float GetYaw();
 
-		void SetPosition(float pX, float pY, float pZ);
-		void SetRotation(float pRoll, float pPitch, float pYaw);
-
 		XMFLOAT3 GetPosition();
 		XMFLOAT3 GetRotation();
 
-		void UpdateViewMatrix();
-
 		XMMATRIX GetFinalMatrix();
 		XMMATRIX GetViewMatrix();
-		XMMATRIX GetProjectionMatrix();
-
-		void Update();
-
+		XMMATRIX GetProjectionMatrix();	
 	};
 
 }

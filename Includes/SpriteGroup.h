@@ -38,12 +38,10 @@ namespace Tuxis
 		TextureRegion *mTextureRegion;
 	
 		floatRect AbsTexCoord;
+		float2 HalfTexSize;
 	
 		Tuxis::Vertex::SpriteGroupVertex *vertices;
 		BasicSprite *SpriteBase;
-	
-		// Half sprite size
-		float HTW,HTH;
 	
 		
 		int SpriteCount;

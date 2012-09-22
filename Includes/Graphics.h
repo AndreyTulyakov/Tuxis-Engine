@@ -29,15 +29,14 @@ namespace Tuxis
 	{
 	public:
 
-
+		Graphics();
+		~Graphics();
 
 		ID3D11Device* GetDevice();
 		ID3D11DeviceContext* GetContext();
 
-
-
-		Graphics();
-		~Graphics();
+		static Graphics* Instance();
+		static bool isReady();
 
 		Graphics( Window* pWindow, bool windowed,bool vsync);
 		bool Initialize( Window* pWindow, bool windowed,bool vsync );
@@ -63,9 +62,6 @@ namespace Tuxis
 		void SetViewport( float pX, float pY, float pWidth, float pHeight );
 
 		ID3D11DepthStencilView* GetDepthStencilView();
-
-		static Graphics* Instance();
-		static bool isReady();
 
 	private:
 		static bool mReady;

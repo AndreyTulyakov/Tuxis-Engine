@@ -13,6 +13,7 @@ Required: dinput.h , dinput8.lib, dxguid.lib
 #define DIRECTINPUT_VERSION 0x0800
 
 #include <dinput.h>
+
 #include "InputBase.h"
 #include "Types.h"
 #include "Log.h"

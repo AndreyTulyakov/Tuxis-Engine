@@ -56,7 +56,7 @@ namespace Tuxis
 		void SetRootScene(Scene* pScene);
 
 
-		static Graphics*		GetGraphics();
+		//static Graphics*		GetGraphics();
 		static Camera*			GetActive2DCamera();
 		static Camera*			GetActive3DCamera();
 		static ID3D11Device*	GetDevice();

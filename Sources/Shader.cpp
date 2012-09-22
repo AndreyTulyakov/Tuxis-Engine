@@ -6,11 +6,11 @@ namespace Tuxis
 {
 	Shader::Shader()
 	{
-		VS_Buffer = 0;
-		PS_Buffer = 0;
-		VertexShader = 0;
-		PixelShader = 0;
-		InputLayout = 0;
+		VS_Buffer = nullptr;
+		PS_Buffer = nullptr;
+		VertexShader = nullptr;
+		PixelShader = nullptr;
+		InputLayout = nullptr;
 	}
 	
 	void Shader::Load(const WCHAR* FX_FileName)
@@ -62,12 +62,17 @@ namespace Tuxis
 			VS_Buffer->Release();
 			PS_Buffer->Release();
 
-
-
 			VS_Buffer = 0;
 			PS_Buffer = 0;
 			VertexShader = 0;
 			PixelShader = 0;
 			InputLayout = 0;
 	}
+
+	Shader::~Shader()
+	{
+		if(VertexShader||PixelShader)
+			Release();
+	}
+
 }

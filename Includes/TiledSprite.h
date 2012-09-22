@@ -3,13 +3,12 @@
 Project Tuxis. 2011-2012.
 ===============================================================================
 
-Required:
 ===============================================================================
 */
 
 #pragma once
 #include "_DllExport.h"
-#include <Windows.h>
+
 #include "Drawable2D.h"
 #include "TextureAtlas.h"
 #include "EngineBase.h"
@@ -32,7 +31,8 @@ namespace Tuxis
 		int mFrameTime,mLastTime;
 		int mFrame;	
 		floatRect AbsTextureCoordinate;
-		float HTW,HTH;
+		float2 HalfTexSize;
+
 
 	public:
 

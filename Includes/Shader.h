@@ -37,6 +37,7 @@ namespace Tuxis
 
 	
 		Shader();
+		~Shader();
 		void Load(const WCHAR* FX_FileName);
 		
 		void CreateInputLayout(D3D11_INPUT_ELEMENT_DESC *pLayout,int pNumElements);

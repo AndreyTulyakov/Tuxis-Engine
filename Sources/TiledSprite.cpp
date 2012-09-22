@@ -15,6 +15,7 @@ namespace Tuxis
 		mTiledTextureRegion=0;
 
 		AbsTextureCoordinate(0.0f,0.0f,1.0f,1.0f);
+		HalfTexSize(0,0);
 
 		VB_Stride = sizeof( vertices[0] );
 		VB_Offset = 0;
@@ -48,8 +49,8 @@ namespace Tuxis
 
 		floatRect *Region=mTiledTextureRegion->TileCoordinates.at(mFrame);
 
-		HTW=( (Region->x2-Region->x1) )/2.0f;
-		HTH=( (Region->y2-Region->y1) )/2.0f;
+		HalfTexSize.x=( (Region->x2-Region->x1) )/2.0f;
+		HalfTexSize.y=( (Region->y2-Region->y1) )/2.0f;
 
 		AbsTextureCoordinate.x1 = Region->x1 / mTiledTextureRegion->mTexture->GetWidth();
 		AbsTextureCoordinate.x2 = Region->x2 / mTiledTextureRegion->mTexture->GetWidth();
@@ -82,7 +83,7 @@ namespace Tuxis
 		if(centered)
 			TranslationMatrix = XMMatrixTranslation( tX, tY, 0.0f );		
 		else
-			TranslationMatrix = XMMatrixTranslation( tX+HTW, tY+HTH, 0.0f );
+			TranslationMatrix = XMMatrixTranslation( tX+HalfTexSize.x, tY+HalfTexSize.y, 0.0f );
 	}
 
 	void TiledSprite::Animate(int pTimeMillisecond)
@@ -97,13 +98,13 @@ namespace Tuxis
 	{
 		if(!mVisible) return;
 
-		Engine::GetInstance()->GetGraphics()->DisableStencilBuffer();
+		Graphics::Instance()->DisableStencilBuffer();
 
 		// Frame calculation
 		floatRect *Region=mTiledTextureRegion->TileCoordinates.at(mFrame);
 
-		HTW=( (Region->x2-Region->x1) )/2.0f;
-		HTH=( (Region->y2-Region->y1) )/2.0f;
+		HalfTexSize.x=( (Region->x2-Region->x1) )/2.0f;
+		HalfTexSize.y=( (Region->y2-Region->y1) )/2.0f;
 
 		AbsTextureCoordinate.x1 = Region->x1 / mTiledTextureRegion->mTexture->GetWidth();
 		AbsTextureCoordinate.x2 = Region->x2 / mTiledTextureRegion->mTexture->GetWidth();
@@ -121,10 +122,10 @@ namespace Tuxis
 		Engine::GetContext()->Map( VertexBuffer, 0,D3D11_MAP_WRITE_DISCARD, 0, &mapResource );
 		{
 			Vertex::vtxSprite* pTempVertex=(Vertex::vtxSprite*)mapResource.pData;
-			pTempVertex[0].Position = XMFLOAT3(-HTW,   HTH,  0.0f);
-			pTempVertex[1].Position = XMFLOAT3(-HTW,  -HTH,  0.0f);
-			pTempVertex[2].Position = XMFLOAT3( HTW,   HTH,  0.0f);
-			pTempVertex[3].Position = XMFLOAT3( HTW,  -HTH,  0.0f);
+			pTempVertex[0].Position = XMFLOAT3(-HalfTexSize.x,   HalfTexSize.y,  0.0f);
+			pTempVertex[1].Position = XMFLOAT3(-HalfTexSize.x,  -HalfTexSize.y,  0.0f);
+			pTempVertex[2].Position = XMFLOAT3( HalfTexSize.x,   HalfTexSize.y,  0.0f);
+			pTempVertex[3].Position = XMFLOAT3( HalfTexSize.x,  -HalfTexSize.y,  0.0f);
 
 			pTempVertex[0].TexCoord = XMFLOAT2( AbsTextureCoordinate.x1, AbsTextureCoordinate.y2 );
 			pTempVertex[1].TexCoord = XMFLOAT2( AbsTextureCoordinate.x1, AbsTextureCoordinate.y1 );

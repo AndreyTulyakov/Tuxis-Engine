@@ -3,7 +3,6 @@
 Project Tuxis. 2011-2012.
 ===============================================================================
 
-Required:
 ===============================================================================
 */
 
@@ -19,25 +18,22 @@ Required:
 #include "Shader.h"
 #include "Light.h"
 
+
 namespace Tuxis
 {
-	struct CBStruct
-	{
-		XMMATRIX FinalMatrix;
-	};
-	
-	
-	#define TEXTURES_COUNT 8
-	
+
 	class TUXIS_DECLSPEC Mesh : public Drawable2D
 	{
+		struct CBStruct
+		{
+			XMMATRIX FinalMatrix;
+		};
 	
 	    private:
 			CBStruct mCBStruct;
 	
 			int VertexCount;
-			Tuxis::Vertex::VertexTest *vertices;	
-			// Half sprite size
+			Tuxis::Vertex::VertexTest *vertices;
 			TextureAtlas *mTexture;
 		
 		public:
@@ -46,9 +42,7 @@ namespace Tuxis
 	        Mesh();
 	
 			void SetTextureAuto(TextureAtlas *pTexture);
-	
 			bool LoadModel(const WCHAR* filename);
-	
 			void SetShader(Shader *pShader);
 	
 			void Update();

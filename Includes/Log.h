@@ -3,7 +3,6 @@
 Project Tuxis. 2011-2012.
 ===============================================================================
 Log Module
-Required: no specials
 ===============================================================================
 */
 
@@ -16,7 +15,7 @@ Required: no specials
 #include "fstream"
 #include "string"
 #include <iostream>
-#include <Windows.h>
+//#include <Windows.h>
 using namespace std;
 
 namespace Tuxis

@@ -45,19 +45,19 @@ namespace Tuxis
 	void Log::Init()
 	{
 		mFile.open( FileName , ios_base::out );
-		if(mFile.fail()) exit(-1);
-	
-		WriteText( "Tuxis Log System\n" );
+		if(!mFile.fail())
+		{
+			WriteText( "Tuxis Log System\n" );
 #ifdef _DEBUG
-		WriteText("Debug mode\n");
+			WriteText("Debug mode\n");
 #else
-		WriteText("Release mode\n");
+			WriteText("Release mode\n");
 #endif
-		Separator();
-		Info("Start logging");
-		Separator();
+			Separator();
+			Info("Start logging");
+			Separator();
+		}
 	}
-	
 	
 	
 	void Log::Info( string Message )
@@ -101,7 +101,7 @@ namespace Tuxis
 			Instance->Release();
 		}
 			MessageBoxA(0,Message.c_str(),"Error",0);
-			exit( -1 );
+			throw Message.c_str();
 	}
 	
 	
@@ -126,10 +126,12 @@ namespace Tuxis
 		}
 	}
 
+
 	bool Log::operator ! ()
 	{
 		return Instance==nullptr;
 	}
+
 
 	Log& Log::operator<<( int i )
 	{
@@ -140,6 +142,7 @@ namespace Tuxis
 		}
 		return *this;
 	}
+
 
 	Log& Log::operator<<( float i )
 	{
@@ -152,6 +155,7 @@ namespace Tuxis
 		return *this;
 	}
 
+
 	Log& Log::operator<<( string Message )
 	{
 		if(Instance)
@@ -160,6 +164,7 @@ namespace Tuxis
 		}
 		return *this;
 	}
+
 
 	void Log::WriteAll( string ResultMessage )
 	{
@@ -172,5 +177,4 @@ namespace Tuxis
 	}
 
 
-	
 }

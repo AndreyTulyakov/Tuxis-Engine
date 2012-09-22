@@ -16,10 +16,8 @@ namespace Tuxis
 	
 		vertices=0;
 	
-		HTW=0;
-		HTH=0;
-	
 		AbsTextureCoordinate(0.0f,0.0f,1.0f,1.0f);
+		HalfTexSize(0,0);
 	
 		VB_Stride = sizeof( Tuxis::Vertex::SpriteGroupVertex );
 		VB_Offset = 0;
@@ -109,9 +107,9 @@ namespace Tuxis
 	
 		if(!mTiledTextureRegion)
 			Log::Error("TxTiledSpriteGroup::Draw - Not set Texture Region.");
-	
-		Engine::GetInstance()->GetGraphics()->DisableStencilBuffer();
-	
+
+		Graphics::Instance()->DisableStencilBuffer();
+
 		// Calculate matrices
 		XMMATRIX WorldMatrix = CalculateWorldMatrix();
 		XMMATRIX FinalMatrix = WorldMatrix*(Engine::GetInstance()->GetActive2DCamera()->GetFinalMatrix() );
@@ -138,8 +136,8 @@ namespace Tuxis
 	
 				floatRect *Region=mTiledTextureRegion->TileCoordinates.at(SpriteBase[i/6].Frame);
 
-				HTW=( (Region->x2 - Region->x1) )/2.0f;
-				HTH=( (Region->y2 - Region->y1) )/2.0f;
+				HalfTexSize.x=( (Region->x2 - Region->x1) )/2.0f;
+				HalfTexSize.y=( (Region->y2 - Region->y1) )/2.0f;
 	
 				AbsTextureCoordinate(
 					Region->x1 / (int)mTiledTextureRegion->mTexture->GetWidth(),
@@ -152,13 +150,13 @@ namespace Tuxis
 				float yPos=SpriteBase[i/6].Position.y;
 	
 				// Vertex Position.
-				pTempVertex[BufferCounter + 0].Position = XMFLOAT3( -HTW,  -HTH, 0.0f );
-				pTempVertex[BufferCounter + 1].Position = XMFLOAT3(  HTW,   HTH, 0.0f );
-				pTempVertex[BufferCounter + 2].Position = XMFLOAT3( -HTW,   HTH, 0.0f );
+				pTempVertex[BufferCounter + 0].Position = XMFLOAT3( -HalfTexSize.x,  -HalfTexSize.y, 0.0f );
+				pTempVertex[BufferCounter + 1].Position = XMFLOAT3(  HalfTexSize.x,   HalfTexSize.y, 0.0f );
+				pTempVertex[BufferCounter + 2].Position = XMFLOAT3( -HalfTexSize.x,   HalfTexSize.y, 0.0f );
 	
-				pTempVertex[BufferCounter + 3].Position = XMFLOAT3(  HTW,  -HTH, 0.0f );
-				pTempVertex[BufferCounter + 4].Position = XMFLOAT3(  HTW,   HTH, 0.0f );
-				pTempVertex[BufferCounter + 5].Position = XMFLOAT3( -HTW,  -HTH, 0.0f );
+				pTempVertex[BufferCounter + 3].Position = XMFLOAT3(  HalfTexSize.x,  -HalfTexSize.y, 0.0f );
+				pTempVertex[BufferCounter + 4].Position = XMFLOAT3(  HalfTexSize.x,   HalfTexSize.y, 0.0f );
+				pTempVertex[BufferCounter + 5].Position = XMFLOAT3( -HalfTexSize.x,  -HalfTexSize.y, 0.0f );
 	
 				// Texture Position.
 				pTempVertex[BufferCounter + 0].TexCoord 

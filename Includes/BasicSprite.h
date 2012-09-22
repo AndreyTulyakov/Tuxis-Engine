@@ -3,7 +3,6 @@
 Project Tuxis. 2011-2012.
 ===============================================================================
 
-Required:
 ===============================================================================
 */
 
@@ -31,13 +30,11 @@ namespace Tuxis
 		void SetColor(XMFLOAT4 pColor);
 	
 		
-	
 		bool Visible;
 		int Frame;
 		XMFLOAT3 Position;
 		float Scale;
 		float Rotation;
 		XMFLOAT4 Color;
-	
 	};
 }

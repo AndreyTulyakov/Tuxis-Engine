@@ -105,30 +105,6 @@ namespace Tuxis
 
 		return NULL;
 	}
-	
-
-	Graphics* Engine::GetGraphics()
-	{
-		if(Me)
-		{
-			if(Me->mGraphics)
-			{
-				if(Me->mGraphics->isReady())
-					return Me->mGraphics;
-				else
-					Log::Error("Engine::GetGraphics - Graphics not initialized.");
-			}
-			else
-			{
-				Log::Error("Engine::GetGraphics - Graphics is null");
-			}
-		}
-		else
-			Log::Error("Engine::GetGraphics - engine is not created.");
-
-		return NULL;
-	}
-	
 
 	ID3D11Device* Engine::GetDevice()
 	{
