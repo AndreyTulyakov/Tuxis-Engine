@@ -14,24 +14,15 @@ namespace Tuxis
 {
 	/*
 	===============================================================================
-	Float
+	Float objects
 	===============================================================================
 	*/
-
-	struct floatRect
-	{
-		float x1,x2;
-		float y1,y2;
-		inline floatRect() {}
-		inline floatRect(float X1,float Y1, float X2, float Y2) : x1(X1), y1(Y1), x2(X2), y2(Y2) {}
-	};
 
 	struct float2
 	{
 		float x,y;
-		inline float2() {}
+		inline float2() : x(0), y(0) {}
 		inline float2(float px,float py) : x(px), y(py) {}
-
 		inline void operator() (float px, float py) { x=px; y=py;}
 
 		void operator -= (const float2& pValue)
@@ -52,54 +43,110 @@ namespace Tuxis
 		}
 	};
 
-	struct float3
-	{
-		float x,y,z;
-		inline float3() {}
-		inline float3(float px,float py, float pz) : x(px), y(py), z(pz) {}
-	};
 
 	struct float4
 	{
 		float x,y,z,w;
-		inline float4() {}
+		inline float4() : x(0), y(0), z(0), w(0) {}
 		inline float4(float px,float py, float pz, float pw) : x(px), y(py), z(pz), w(pw) {}
+		inline void operator() (float px, float py, float pz, float pw) { x=px; y=py; z=pz; w=pw;}
+
+		void operator -= (const float4& pValue)
+		{
+			x-=pValue.x;
+			y-=pValue.y;
+			z-=pValue.z;
+			w-=pValue.w;
+		}
+
+		void operator += (const float4& pValue)
+		{
+			x+=pValue.x;
+			y+=pValue.y;
+			z+=pValue.z;
+			w-=pValue.w;
+		}
+
+		bool operator == (const float4& pValue)
+		{
+			return (
+				x==pValue.x && 
+				y==pValue.y &&
+				z==pValue.z &&
+				w==pValue.w); 
+		}
 	};
+
+
+	struct floatRect
+	{
+		float x1,y1;
+		float x2,y2;
+		inline floatRect() : x1(0), y1(0), x2(0), y2(0) {}
+		inline floatRect(float X1,float Y1, float X2, float Y2) : x1(X1), y1(Y1), x2(X2), y2(Y2) {}
+	};
+
 
 	struct Color
 	{
 		float r,g,b,a;
-		inline Color() {}
+		inline Color() : r(0), g(0), b(0), a(0) {}
 		inline Color(float R, float G, float B,float A) : r(R), g(G), b(B), a(A) {}
-
 		inline void operator () (float R, float G, float B,float A)	{ r=R; g=G; b=B; a=A; }
+
+		void operator -= (const Color& pValue)
+		{
+			r-=pValue.r;
+			g-=pValue.g;
+			b-=pValue.b;
+			a-=pValue.a;
+		}
+
+		void operator += (const Color& pValue)
+		{
+			r+=pValue.r;
+			g+=pValue.g;
+			b+=pValue.b;
+			a-=pValue.a;
+		}
+
+		bool operator == (const Color& pValue)
+		{
+			return (
+				r==pValue.r && 
+				g==pValue.g &&
+				b==pValue.b &&
+				a==pValue.a); 
+		}
 	};
 	
 	/*
 	===============================================================================
-	Integer
+	Integer objects
 	===============================================================================
 	*/
 
 	struct int2
 	{
 		int x,y;
-		inline int2() {}
+		inline int2() : x(0), y(0) {}
 		inline int2(int px,int py) : x(px), y(py) {}
+		inline void operator() (int px, int py) { x=px; y=py;}
 	};
 
 	struct int4
 	{
 		int x,y,z,w;
-		inline int4() {}
+		inline int4() : x(0), y(0), z(0), w(0) {}
 		inline int4(int px,int py, int pz, int pw) : x(px), y(py), z(pz), w(pw) {}
+		inline void operator() (int px, int py, int pz, int pw) { x=px; y=py; z=pz; w=pw;}
 	};
 
 	struct intRect
 	{
-		int x1,x2;
-		int y1,y2;
-		inline intRect() {}
+		int x1,y1;
+		int x2,y2;
+		inline intRect() : x1(0), y1(0), x2(0), y2(0) {}
 		inline intRect(int X1,int Y1, int X2, int Y2) : x1(X1), y1(Y1), x2(X2), y2(Y2) {}
 	};
 
