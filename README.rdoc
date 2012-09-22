@@ -5,6 +5,7 @@ It is written in C++, and has bindings only for C++ language.
 
 == Requirements
 * Windows 7 or later
+* DirectX SDK
 * DirectX11 hardware support
 * C++0X Compiler
 * Use "AngelCode Bitmap Font Generator" for generate .fnt files.
