@@ -25,6 +25,31 @@ namespace Tuxis
 #define DEGTORAD 0.0174532925199432957f
 #define RADTODEG 57.295779513082320876f
 
+
+#pragma once
+
+#include <string>
+	using namespace std;
+
+	/*
+	** Common math constants
+	*/
+#define DEGTORAD 0.0174532925199432957f
+#define RADTODEG 57.295779513082320876f
+#ifndef M_PI
+#define M_PI	3.14159265358979323846f
+#define M_PI_2	1.57079632679489661923f
+#define M_PI_4	0.785398163397448309616f
+#define M_1_PI	0.318309886183790671538f
+#define M_2_PI	0.636619772367581343076f
+#endif
+
+
+
+
+
+
+
 	extern TUXIS_DECLSPEC HRESULT hr;
 
 	namespace ShaderLayouts
@@ -65,7 +90,7 @@ namespace Tuxis
 			{
 				Position	=XMFLOAT3( 0.0f, 0.0f, 0.0f );
 				TexCoord	=XMFLOAT2( 0.0f, 0.0f );
-				
+
 			}
 
 			XMFLOAT3 Position;
@@ -148,9 +173,11 @@ namespace Tuxis
 	Functions
 	===============================================================================
 	*/
-	TUXIS_DECLSPEC wstring IntToWString(int val);
 	TUXIS_DECLSPEC string IntToString(int val);
 	TUXIS_DECLSPEC string FloatToString(float val);
+
+	TUXIS_DECLSPEC wstring IntToWString(int val);
+	TUXIS_DECLSPEC wstring FloatToWString(float val);
 
 	typedef 
 		enum HorizontalAlign
@@ -169,6 +196,6 @@ namespace Tuxis
 		VBOTTOM
 	} 	VerticalAlign;
 
-	
+
 
 }
