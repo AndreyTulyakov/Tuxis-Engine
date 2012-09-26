@@ -1,4 +1,4 @@
-==Tuxis-Engine.
+==Tuxis-Engine
 Tuxis is a simple, 2D oriented game engine, based on DirectX11 graphics.
 Developed in order to study and does not strive for commercial indicators.
 It is written in C++, and has bindings only for C++ language.
