@@ -70,8 +70,9 @@ namespace Tuxis
 		
 	}
 	
-	void Text::SetText(wstring inText)
+	void Text::SetText(const WCHAR* parText)
 	{
+		wstring inText = parText;
 		SavedStrings.clear();
 		
 		if(!inText.empty())

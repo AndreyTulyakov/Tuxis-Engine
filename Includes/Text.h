@@ -44,7 +44,7 @@ namespace Tuxis
 		void Draw();
 		void SetFont(BitmapFont* pFont);
 		void SetRotate( float tR );
-		void SetText(wstring);
+		void SetText(const WCHAR* parText);
 		void SetPosition(float xpos, float ypos);
 
 		void SetHorizontalAlign(HorizontalAlign hAlign);
