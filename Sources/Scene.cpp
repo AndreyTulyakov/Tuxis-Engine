@@ -32,6 +32,27 @@ namespace Tuxis
 			Log::Error("Scene::AttachChild: obj - null");
 		ChildObjects.push_back(obj);
 	}
+
+	void Scene::DetachChild( SceneObject *obj )
+	{
+		if(!obj)
+			Log::Error("Scene::AttachChild: obj - null");
+
+		for(int i=0;i<ChildObjects.size(); i++)
+		{
+			if( ChildObjects.at(i) == obj )
+			{
+				ChildObjects.erase (ChildObjects.begin() + i);
+				break;
+			}
+		}
+	}
+
+	void Scene::DetachAllChilds()
+	{
+		ChildObjects.clear();
+	}
+
 	
 	void Scene::Draw()
 	{
@@ -63,4 +84,7 @@ namespace Tuxis
 			}
 		}
 	}
+
+
+
 }

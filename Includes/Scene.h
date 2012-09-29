@@ -25,6 +25,8 @@ namespace Tuxis
 		~Scene();
 
 		void AttachChild(SceneObject *obj);
+		void DetachChild(SceneObject *obj);
+		void DetachAllChilds();
 
 		void On();
 		void Off();
