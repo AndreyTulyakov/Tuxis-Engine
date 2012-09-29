@@ -31,7 +31,7 @@ namespace Tuxis
 
 		void Init();
 		void Release();
-		void WriteAll(string Result);
+		void WriteAll( const char* Result);
 	public:
 
 		// Methods
@@ -42,16 +42,16 @@ namespace Tuxis
 
 		void Separator();
 
-		static void Info( string Message );
-		static void Error( string Message );
-		static void Warning( string Message );
-		static void Success( string Message );
-		static void WriteText( string Message );
+		static void Info( const char* Message );
+		static void Error( const char* Message );
+		static void Warning( const char* Message );
+		static void Success(  const char* Message );
+		static void WriteText(  const char* Message );
 
 		bool operator ! ();
 		Log& operator << (int i);
 		Log& operator << (float i);
-		Log& operator << (string Message);
+		Log& operator << ( const char* Message);
 	};
 
 }

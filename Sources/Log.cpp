@@ -9,10 +9,11 @@ namespace Tuxis
 	
 	Log::Log()
 	{
-		FileName = "Log.txt";
+		
 		
 		if(Instance==NULL)
 		{
+			FileName = "Log.txt";
 			Instance = this;
 			Instance->Init();
 		}
@@ -60,18 +61,19 @@ namespace Tuxis
 	}
 	
 	
-	void Log::Info( string Message )
+	void Log::Info( const char* pMessage )
 	{
+		string Message = pMessage;
 		if( Instance )
 		{
 			Message.insert(0,"INFO: ");
 			Message.append("\n");
-			Instance->WriteAll(Message);
+			Instance->WriteAll(Message.c_str());
 		}
 	}
 	
 	
-	void Log::WriteText( string Message )
+	void Log::WriteText( const char* Message )
 	{
 		if( Instance )
 		{
@@ -91,13 +93,15 @@ namespace Tuxis
 	}
 	
 	
-	void Log::Error( string Message )
+	void Log::Error(  const char* pMessage )
 	{
+		string Message = pMessage;
+
 		if( Instance )
 		{
 			Message.insert(0,"ERROR: ");
 			Message.append("\n");
-			Instance->WriteAll(Message);
+			Instance->WriteAll(Message.c_str());
 			Instance->Release();
 		}
 			MessageBoxA(0,Message.c_str(),"Error",0);
@@ -105,24 +109,26 @@ namespace Tuxis
 	}
 	
 	
-	void Log::Warning( string Message )
+	void Log::Warning( const char* pMessage )
 	{
+		string Message = pMessage;
 		if( Instance )
 		{
 			Message.insert(0,"WARNING: ");
 			Message.append("\n");
-			Instance->WriteAll(Message);
+			Instance->WriteAll(Message.c_str());
 		}
 	}
 	
 	
-	void Log::Success( string Message )
+	void Log::Success( const char* pMessage )
 	{
+		string Message = pMessage;
 		if( Instance )
 		{
 			Message.insert(0,"SUCCESS: ");
 			Message.append("\n");
-			Instance->WriteAll(Message);
+			Instance->WriteAll(Message.c_str());
 		}
 	}
 
@@ -138,7 +144,7 @@ namespace Tuxis
 		if(Instance)
 		{
 			string Message = IntToString(i);
-			Instance->WriteAll(Message);
+			Instance->WriteAll(Message.c_str());
 		}
 		return *this;
 	}
@@ -149,14 +155,14 @@ namespace Tuxis
 		if(Instance)
 		{
 			string Message = FloatToString(i);
-			Instance->WriteAll(Message);
+			Instance->WriteAll(Message.c_str());
 		}
 		
 		return *this;
 	}
 
 
-	Log& Log::operator<<( string Message )
+	Log& Log::operator<<( const char* Message )
 	{
 		if(Instance)
 		{
@@ -166,14 +172,14 @@ namespace Tuxis
 	}
 
 
-	void Log::WriteAll( string ResultMessage )
+	void Log::WriteAll( const char* ResultMessage )
 	{
 		if(mFile.is_open())
 		{
-			mFile.write( ResultMessage.c_str(), ResultMessage.size() );
+			mFile.write( ResultMessage, strlen(ResultMessage) );
 			mFile.flush();
 		}
-		if(ConsoleLoging) cout<<ResultMessage.c_str();
+		if(ConsoleLoging) cout<<ResultMessage;
 	}
 
 
