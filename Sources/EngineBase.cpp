@@ -10,32 +10,32 @@ namespace Tuxis
 		wstring DEFAULT_SHADERS=L"Data\\Shaders\\Default\\";
 	}
 	
-	string IntToString(int val) 
+	const char* IntToString(int val) 
 	{
-		char buff[16]; 
+		static char buff[16]; 
 		sprintf(buff,"%d",val);
-		return string(buff);
+		return buff;
 	}
 
-	string FloatToString(float val) 
+	const char*  FloatToString(float val) 
 	{
-		char buff[16]; 
+		static char buff[16]; 
 		sprintf(buff,"%f",val);
-		return string(buff);
+		return buff;
 	}
 
-	wstring IntToWString(int val) 
+	const wchar_t*  IntToWString(int val) 
 	{
-		wchar_t buff[16]; 
+		static wchar_t buff[16]; 
 		swprintf(buff,16,L"%d",val);
-		return wstring(buff);
+		return buff;
 	}
 
-	wstring FloatToWString(float val) 
+	const wchar_t*  FloatToWString(float val) 
 	{
-		wchar_t buff[16]; 
+		static wchar_t buff[16]; 
 		swprintf(buff,16,L"%f",val);    
-		return wstring(buff);
+		return buff;
 	}
 	
 	namespace ShaderLayouts

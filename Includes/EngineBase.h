@@ -173,11 +173,12 @@ namespace Tuxis
 	Functions
 	===============================================================================
 	*/
-	TUXIS_DECLSPEC string IntToString(int val);
-	TUXIS_DECLSPEC string FloatToString(float val);
+	TUXIS_DECLSPEC const char*  IntToString(int val);
+	TUXIS_DECLSPEC const char*  FloatToString(float val);
 
-	TUXIS_DECLSPEC wstring IntToWString(int val);
-	TUXIS_DECLSPEC wstring FloatToWString(float val);
+	TUXIS_DECLSPEC const wchar_t* IntToWString(int val);
+	TUXIS_DECLSPEC const wchar_t* FloatToWString(float val);
+
 
 	typedef 
 		enum HorizontalAlign
