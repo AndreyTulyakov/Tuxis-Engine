@@ -179,7 +179,7 @@ namespace Tuxis
 	{
 		if(mFile)
 		{
-			fwrite(ResultMessage , 1 , sizeof(ResultMessage) , mFile );	
+			fwrite(ResultMessage , 1 , strlen(ResultMessage) , mFile );	
 		}
 		if(ConsoleLoging) cout<<ResultMessage;
 	}
