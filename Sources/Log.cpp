@@ -13,7 +13,8 @@ namespace Tuxis
 		
 		if(Instance==NULL)
 		{
-			FileName = "Log.txt";
+			strcpy(FileName,"Log.txt");
+			//FileName = "Log.txt";
 			Instance = this;
 			Instance->Init();
 		}
@@ -33,7 +34,8 @@ namespace Tuxis
 		Separator();
 		Info( "Stop logging" );
 		Separator();
-		mFile.close();
+		fclose(mFile);
+		mFile = nullptr;
 		Instance=NULL;
 	}
 	
@@ -45,8 +47,8 @@ namespace Tuxis
 
 	void Log::Init()
 	{
-		mFile.open( FileName , ios_base::out );
-		if(!mFile.fail())
+		mFile = fopen(FileName,"w");
+		if(mFile != 0)
 		{
 			WriteText( "Tuxis Log System\n" );
 #ifdef _DEBUG
@@ -87,7 +89,8 @@ namespace Tuxis
 		if( Instance )
 		{
 			string Message="-------------------------------------------------------------------------------\n" ;
-			Instance->mFile.write( Message.c_str(), Message.size() );
+			if(mFile)
+				fwrite(Message.c_str() , 1 , Message.size() , Instance->mFile );	
 			if(ConsoleLoging) cout<<Message.c_str();
 		}
 	}
@@ -174,10 +177,9 @@ namespace Tuxis
 
 	void Log::WriteAll( const char* ResultMessage )
 	{
-		if(mFile.is_open())
+		if(mFile)
 		{
-			mFile.write( ResultMessage, strlen(ResultMessage) );
-			mFile.flush();
+			fwrite(ResultMessage , 1 , sizeof(ResultMessage) , mFile );	
 		}
 		if(ConsoleLoging) cout<<ResultMessage;
 	}

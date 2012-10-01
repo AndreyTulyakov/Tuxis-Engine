@@ -26,8 +26,8 @@ namespace Tuxis
 	private:
 		static bool ConsoleLoging;
 		static Log* Instance;
-		string FileName;
-		ofstream mFile;
+		char FileName[32];
+		FILE* mFile;
 
 		void Init();
 		void Release();
