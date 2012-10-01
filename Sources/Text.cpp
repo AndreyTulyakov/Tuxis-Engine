@@ -72,7 +72,7 @@ namespace Tuxis
 	
 	void Text::SetText(const WCHAR* parText)
 	{
-		wstring inText = parText;
+		wstring inText(parText);
 		SavedStrings.clear();
 		
 		if(!inText.empty())
@@ -115,13 +115,11 @@ namespace Tuxis
 		this->hAlign=hAlign;
 	}
 
-
 	void Text::SetVerticalAlign( VerticalAlign vAlign )
 	{
 		mChanged=true;
 		this->vAlign=vAlign;
 	}
-
 
 	void Text::CalculateHorizontalAlignOffset(int LineNum)
 	{

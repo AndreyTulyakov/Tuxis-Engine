@@ -192,7 +192,7 @@ namespace Tuxis
 		mWindow		= nullptr;
 		mCamera2D	= nullptr;
 		mCamera3D	= nullptr;
-		mRootScene = nullptr;
+		mRootScene  = nullptr;
 
 		Log::Success("Engine - Released");
 	}

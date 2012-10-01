@@ -78,9 +78,16 @@ namespace Tuxis
 		if(!mIgnored)
 		{
 			int NumberOfObjects=ChildObjects.size();
+			SceneObject *pObject;
+
 			for(int i=0; i<NumberOfObjects; i++)
 			{
-				ChildObjects.at(i)->Update();
+				pObject=ChildObjects.at(i);
+
+				if(!pObject->IsIgnoreUpdate())
+				{
+					ChildObjects.at(i)->Update();
+				}
 			}
 		}
 	}
