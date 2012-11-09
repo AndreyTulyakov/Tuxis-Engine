@@ -31,10 +31,11 @@ namespace Tuxis
 		void On();
 		void Off();
 
-		void Draw();
-		void Update();
+		virtual void Draw();
+		virtual void Update();
 
 	protected:
+
 		vector <SceneObject *> ChildObjects;
 
 		bool mVisible;

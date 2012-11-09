@@ -12,6 +12,8 @@ Required:
 
 #define  _XM_NO_INTRINSICS_
 
+#include "VertexBufferManager.h"
+
 #include "Camera.h"
 #include "EngineDescription.h"
 #include "Graphics.h"
@@ -40,7 +42,7 @@ namespace Tuxis
 		Scene *mRootScene;
 
 		static Engine* Me;
-
+		
 
 	public:
 

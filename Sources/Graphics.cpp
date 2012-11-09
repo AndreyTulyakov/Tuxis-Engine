@@ -255,7 +255,7 @@ namespace Tuxis
 	
 		hr = Device->CreateRenderTargetView( pBackBuffer, NULL, &BackBuffer );
 		if( FAILED(hr) )	Log::Error( "Graphics::CreateBackBuffer: Device->CreateRenderTargetView" );
-	
+
 		_RELEASE(pBackBuffer)
 	
 		CurrentRenderTarget = &BackBuffer;

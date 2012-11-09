@@ -6,11 +6,11 @@ namespace Tuxis
 {
 	Log* Log::Instance = NULL;
 	bool Log::ConsoleLoging = true;
-	
+
 	Log::Log()
 	{
-		
-		
+
+
 		if(Instance==NULL)
 		{
 			strcpy(FileName,"Log.txt");
@@ -23,7 +23,7 @@ namespace Tuxis
 			Warning("Log::Log: Log already exist");
 		}
 	}
-	
+
 	Log::~Log()
 	{
 		Release();
@@ -38,7 +38,7 @@ namespace Tuxis
 		mFile = nullptr;
 		Instance=NULL;
 	}
-	
+
 
 	void Log::EnableConsoleLoging(bool IsIt)
 	{
@@ -61,8 +61,8 @@ namespace Tuxis
 			Separator();
 		}
 	}
-	
-	
+
+
 	void Log::Info( const char* pMessage )
 	{
 		string Message = pMessage;
@@ -73,8 +73,8 @@ namespace Tuxis
 			Instance->WriteAll(Message.c_str());
 		}
 	}
-	
-	
+
+
 	void Log::WriteText( const char* Message )
 	{
 		if( Instance )
@@ -82,8 +82,8 @@ namespace Tuxis
 			Instance->WriteAll(Message);
 		}
 	}
-	
-	
+
+
 	void Log::Separator()
 	{
 		if( Instance )
@@ -94,8 +94,8 @@ namespace Tuxis
 			if(ConsoleLoging) cout<<Message.c_str();
 		}
 	}
-	
-	
+
+
 	void Log::Error(  const char* pMessage )
 	{
 		string Message = pMessage;
@@ -107,11 +107,11 @@ namespace Tuxis
 			Instance->WriteAll(Message.c_str());
 			Instance->Release();
 		}
-			MessageBoxA(0,Message.c_str(),"Error",0);
-			throw Message.c_str();
+		MessageBoxA(0,Message.c_str(),"Error",0);
+		throw Message.c_str();
 	}
-	
-	
+
+
 	void Log::Warning( const char* pMessage )
 	{
 		string Message = pMessage;
@@ -122,8 +122,8 @@ namespace Tuxis
 			Instance->WriteAll(Message.c_str());
 		}
 	}
-	
-	
+
+
 	void Log::Success( const char* pMessage )
 	{
 		string Message = pMessage;
@@ -160,7 +160,7 @@ namespace Tuxis
 			string Message = FloatToString(i);
 			Instance->WriteAll(Message.c_str());
 		}
-		
+
 		return *this;
 	}
 

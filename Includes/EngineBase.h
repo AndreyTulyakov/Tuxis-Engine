@@ -17,6 +17,7 @@ Required:
 #include <string>
 using namespace std;
 
+
 #define _RELEASE(p)		{ if(p){(p)->Release(); (p)=nullptr;} }
 #define _RELEASE_DELETE(p)	{ if(p){(p)->Release(); delete (p); (p)=nullptr;} }
 

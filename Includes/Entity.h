@@ -13,6 +13,9 @@ Required:
 
 class Entity
 {
+protected:
+	int ID;
+
 public:
 	Entity(void);
 	~Entity(void);
