@@ -10,5 +10,8 @@ It is written in C++, and has bindings only for C++ language.
 * C++0X Compiler
 * Use "AngelCode Bitmap Font Generator" for generate .fnt files.
 
+==== Some features
+http://www.youtube.com/watch?v=qfixC3GN0M0
+
 === Authors
 Andrew Tulay (Tulyakov) - main developer. (mhyhre@gmail.com)
